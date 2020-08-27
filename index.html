@@ -252,19 +252,22 @@
   </div>
   <script>
     window.addEventListener("keydown", (e) => {
-      const audio = document.querySelector(`audio[keycode-key="${e.keyCode}"]`);
-      const key = document.querySelector(`.key[keycode-key="${e.keyCode}"]`);
-      if (!audio || !key) return;
-      audio.currentTime = 0;
-      audio.play();
-      key.classList.add("playing");
-    });
-    const keys = document.querySelectorAll(".key");
-    keys.forEach((key) => key.addEventListener("transitionend", (e) => {
-      if (e.propertyName !== "transform") return;
-      const target = e.target;
-      target.classList.remove("playing"); 
-    }));
+        const audio = document.querySelector(`audio[keycode-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[keycode-key="${e.keyCode}"]`);
+        if (!audio || !key) return;
+        audio.currentTime = 0;
+        audio.play();
+        key.classList.add("playing");
+      });
+
+      const keys = document.querySelectorAll(".key");
+      keys.forEach((key) => 
+        key.addEventListener("transitionend", (e) => {
+          if (e.propertyName !== "transform") return;
+          const target = e.target;
+          target.classList.remove("playing");
+        })
+      );
   </script>
 </body>
 
